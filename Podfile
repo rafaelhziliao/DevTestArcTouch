@@ -8,7 +8,8 @@ target 'DevTestArcTouch' do
   # Pods for DevTestArcTouch
   pod 'Moya', '~> 11.0'
   pod 'Alamofire', '~> 4.7'
-  pod 'AlamofireImage', '~> 3.3'  
+  pod 'AlamofireImage', '~> 3.3'
+  pod 'ReachabilitySwift'
 
   target 'DevTestArcTouchTests' do
     inherit! :search_paths
