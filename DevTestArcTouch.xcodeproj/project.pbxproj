@@ -13,6 +13,8 @@
 		580D063F21113702002D0AEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 580D063E21113702002D0AEC /* Assets.xcassets */; };
 		580D064221113702002D0AEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580D064021113702002D0AEC /* LaunchScreen.storyboard */; };
 		580D064D21113702002D0AEC /* DevTestArcTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D064C21113702002D0AEC /* DevTestArcTouchTests.swift */; };
+		582A7F562111D337007FC03D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A7F552111D337007FC03D /* Movie.swift */; };
+		582A7F582111D60F007FC03D /* MovieResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A7F572111D60F007FC03D /* MovieResults.swift */; };
 		5FBC97141510BCEE3B465622 /* Pods_DevTestArcTouchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACEAFCFC911DDF7ED4768E2 /* Pods_DevTestArcTouchTests.framework */; };
 		D64735C766EE205C45391BF6 /* Pods_DevTestArcTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8D556F0CDC5DDCB1A116F2 /* Pods_DevTestArcTouch.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		580D064821113702002D0AEC /* DevTestArcTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DevTestArcTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		580D064C21113702002D0AEC /* DevTestArcTouchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevTestArcTouchTests.swift; sourceTree = "<group>"; };
 		580D064E21113702002D0AEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		582A7F552111D337007FC03D /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		582A7F572111D60F007FC03D /* MovieResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResults.swift; sourceTree = "<group>"; };
 		AACEAFCFC911DDF7ED4768E2 /* Pods_DevTestArcTouchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTestArcTouchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8D556F0CDC5DDCB1A116F2 /* Pods_DevTestArcTouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTestArcTouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8E46AB35AADE4E3D3C754B /* Pods-DevTestArcTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTestArcTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DevTestArcTouch/Pods-DevTestArcTouch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		580D065B21113976002D0AEC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				582A7F552111D337007FC03D /* Movie.swift */,
+				582A7F572111D60F007FC03D /* MovieResults.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +353,8 @@
 			files = (
 				580D063A21113700002D0AEC /* ViewController.swift in Sources */,
 				580D063821113700002D0AEC /* AppDelegate.swift in Sources */,
+				582A7F562111D337007FC03D /* Movie.swift in Sources */,
+				582A7F582111D60F007FC03D /* MovieResults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
