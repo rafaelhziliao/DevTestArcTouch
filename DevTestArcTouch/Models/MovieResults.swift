@@ -19,9 +19,9 @@ extension MovieResults: Decodable {
     
     private enum ResultsCodingKeys: String, CodingKey {
         case page
-        case numberOfResults
-        case numberOfPages
-        case movies
+        case numberOfResults = "total_results"
+        case numberOfPages = "total_pages"
+        case movies = "results"
     }
     
     init(from decoder: Decoder) throws {
@@ -31,5 +31,25 @@ extension MovieResults: Decodable {
         numberOfResults = try  container.decode(Int.self, forKey: .numberOfResults)
         numberOfPages = try container.decode(Int.self, forKey: .numberOfPages)
         movies = try container.decode([Movie].self, forKey: .movies)
+    }
+    
+    public static func requestNewMovies(page: Int,
+                                        success: @escaping ([Movie]) -> Void,
+                                        failure: @escaping (Error) -> Void = {_ in }) {
+        
+            
+        NetworkManager.provider.request(.newMovies(page: page)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let results = try JSONDecoder().decode(MovieResults.self, from: response.data)
+                    success(results.movies)
+                } catch let err {
+                    print(err)
+                }
+            case let .failure(error):
+                failure(error)
+            }
+        }
     }
 }
