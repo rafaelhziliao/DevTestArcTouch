@@ -12,7 +12,7 @@ import Moya
 public final class NetworkManager {
     static let apiKey = "1f54bd990f1cdfb230adb312546d765d"
     static let shared = NetworkManager()
-    static let provider = MoyaProvider<MovieApi>()
+    static let provider = MoyaProvider<MovieApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     fileprivate init () {
         
