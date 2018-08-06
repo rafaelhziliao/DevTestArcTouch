@@ -10,12 +10,35 @@ import Foundation
 
 struct Movie {
     let id: Int
-    let posterPath: String
+    let posterPath: String?
     let backDrop: String
     let title: String
-    var releaseDate: String
+    let releaseDate: String
     let overview: String
     let voteAverage: Double
+    
+    private let imageURLPrefix = "https://image.tmdb.org/t/p"
+    
+    enum ImageSize: Int {
+       case small = 0
+       case medium = 1
+       case lager = 2
+    }
+    
+    func posterPath(size: ImageSize) -> String {
+        if posterPath == nil {
+            return "https://www.movieinsider.com/images/none_175px.jpg"
+        }
+        
+        switch size {
+        case .small:
+            return  "\(imageURLPrefix)/w185\(posterPath!)"
+            
+        default:
+            return  "\(imageURLPrefix)/w500\(posterPath!)"
+        }
+    }
+    
 }
 
 extension Movie: Decodable {

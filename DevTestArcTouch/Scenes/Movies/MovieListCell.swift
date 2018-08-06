@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class MovieListCell: UITableViewCell {
     static let identifier = "MovieListCell"
@@ -49,7 +50,7 @@ class MovieListCell: UITableViewCell {
         self.rateLabel.textColor = movie.voteAverage > 5 ? UIColor.black : UIColor.white
         self.overviewLabel.text = movie.overview
         
-        //self.posterImageview.af_setImageWithURL(NSURL(string: movie.posterPath(.Small))!, imageTransition: .CrossDissolve(0.2))
+        self.posterImageview.af_setImage(withURL: URL(string: movie.posterPath(size: .small))!, imageTransition: .crossDissolve(0.2))
     }
 
 }
