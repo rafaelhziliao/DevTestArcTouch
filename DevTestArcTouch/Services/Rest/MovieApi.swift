@@ -10,14 +10,13 @@ import Foundation
 import Moya
 
 enum MovieApi {
-    case recommended(id: Int)
-    case topRated(page: Int)
     case newMovies(page: Int)
+    case search(movie: String)
 }
 
 extension MovieApi: TargetType {
     var baseURL: URL {
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/") else {
+        guard let url = URL(string: "https://api.themoviedb.org/3") else {
             fatalError("baseURL could not be configured")
         }
         return url
@@ -25,18 +24,16 @@ extension MovieApi: TargetType {
     
     var path: String {
         switch self {
-        case .recommended(let id):
-            return "\(id)/recommendations"
-        case .topRated:
-            return "popular"
         case .newMovies:
-            return "now_playing"
+            return "/movie/now_playing"
+        case .search:
+            return "/search/movie"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .recommended, .topRated, .newMovies:
+        case .newMovies, .search:
             return .get
         }
     }
@@ -47,23 +44,23 @@ extension MovieApi: TargetType {
     
     var parameters: [String: Any] {
         switch self {
-        case .recommended:
-            return ["api_key": NetworkManager.apiKey]
-        case .topRated(let page), .newMovies(let page):
+        case .newMovies(let page):
             return ["page": page, "api_key": NetworkManager.apiKey]
+        case .search(let movie):
+            return ["api_key": NetworkManager.apiKey, "query": movie]
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .recommended, .topRated, .newMovies:
+        case .newMovies, .search:
             return URLEncoding.queryString
         }
     }
     
     var task: Task {
         switch self {
-        case .recommended, .topRated, .newMovies:
+        case .newMovies, .search:
             return .requestParameters(parameters: parameters, encoding: parameterEncoding)
         }
     }
