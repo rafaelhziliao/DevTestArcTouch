@@ -38,6 +38,21 @@ enum Movies {
         }
     }
     
+    enum SearchMovie {
+        struct Request {
+            var movieTitle: String
+        }
+        
+        struct Response {
+            var movieResults: MovieResults
+        }
+        
+        struct ViewModel {
+            var movieResults: MovieResults
+        }
+    }
+
+    
     enum Error {
         struct Request {
         }

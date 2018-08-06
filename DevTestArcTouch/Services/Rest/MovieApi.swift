@@ -11,7 +11,7 @@ import Moya
 
 enum MovieApi {
     case newMovies(page: Int)
-    case search(movie: String)
+    case search(movieTitle: String)
 }
 
 extension MovieApi: TargetType {
@@ -46,8 +46,8 @@ extension MovieApi: TargetType {
         switch self {
         case .newMovies(let page):
             return ["page": page, "api_key": NetworkManager.apiKey]
-        case .search(let movie):
-            return ["api_key": NetworkManager.apiKey, "query": movie]
+        case .search(let movieTitle):
+            return ["api_key": NetworkManager.apiKey, "query": movieTitle]
         }
     }
     
