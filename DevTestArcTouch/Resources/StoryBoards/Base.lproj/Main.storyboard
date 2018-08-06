@@ -123,6 +123,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="EVr-8o-KdZ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="findMovieSearchBar" destination="cXl-R9-Tag" id="q9c-o2-TS1"/>
                         <outlet property="moviesTableView" destination="HwX-Dd-xkt" id="G5y-ra-Al5"/>
                         <segue destination="xVZ-Io-p7e" kind="show" id="hLG-oj-FMM"/>
                     </connections>

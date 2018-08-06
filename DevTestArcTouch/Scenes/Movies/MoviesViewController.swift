@@ -64,17 +64,28 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         doSomething()
-        self.moviesTableView.delegate = self
-        self.moviesTableView.dataSource = self
-        
+        self.setupViews()
         self.fetchMovies()
     }
   
     // MARK: Do something
+    
+    func setupViews() {
+        self.moviesTableView.delegate = self
+        self.moviesTableView.dataSource = self
+        
+        self.findMovieSearchBar.tintColor = UIColor.Colors.grayColor
+        self.findMovieSearchBar.barStyle = .black
+        self.findMovieSearchBar.placeholder = "Find your favorite movie..."
+        self.findMovieSearchBar.delegate = self
+        self.findMovieSearchBar.enablesReturnKeyAutomatically = false
+
+    }
   
     //@IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var findMovieSearchBar: UISearchBar!
     @IBOutlet var moviesTableView: UITableView!
-    var movies: [Movie] = []
+    private var movies: [Movie] = []
     
     func doSomething() {
         let request = Movies.Something.Request()
@@ -115,4 +126,12 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
 
     }
     
+}
+
+extension MoviesViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        
+    }
 }
