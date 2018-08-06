@@ -53,7 +53,7 @@ extension MovieResults: Decodable {
         }
     }
     
-    public static func requestSearchedMovie(movieTitle: String,
+    public static func requestSearchMovie(movieTitle: String,
                                             success: @escaping (MovieResults) -> Void,
                                             failure: @escaping (Error) -> Void = {_ in }) {
         
