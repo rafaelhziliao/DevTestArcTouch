@@ -14,7 +14,7 @@ import UIKit
 
 protocol MovieService {
     func requestMovies(page: Int,
-                       success: @escaping ([Movie]) -> Void,
+                       success: @escaping (MovieResults) -> Void,
                        failure: @escaping (Error) -> Void)
 }
 
@@ -27,7 +27,7 @@ class MoviesWorker {
     
     
     func requestMovies(request: Movies.FetchMovies.Request,
-                       success: @escaping ([Movie]) -> Void,
+                       success: @escaping (MovieResults) -> Void,
                        failure: @escaping (Error) -> Void = {_ in }) {
         
         self.service.requestMovies(page: request.page, success: { (movies) in

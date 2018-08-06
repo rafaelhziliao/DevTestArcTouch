@@ -91,7 +91,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     }
     
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel) {
-        self.movies = viewModel.movies
+        self.movies = viewModel.movieResults.movies
         self.moviesTableView.reloadData()
     }
 }

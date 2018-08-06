@@ -41,8 +41,8 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     }
     
     func fetchMovies(request: Movies.FetchMovies.Request) {
-        self.worker?.requestMovies(request: request, success: { [weak self] (movies) in
-            let response = Movies.FetchMovies.Response(movies: movies)
+        self.worker?.requestMovies(request: request, success: { [weak self] (moviesResults) in
+            let response = Movies.FetchMovies.Response(movieResults: moviesResults)
             self?.presenter?.presentFetchedMovies(response: response)
             }, failure: { [weak self] (error) in
             let response = Movies.Error.Response(message: error.localizedDescription)

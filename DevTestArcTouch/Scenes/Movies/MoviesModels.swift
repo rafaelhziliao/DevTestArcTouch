@@ -30,11 +30,11 @@ enum Movies {
         }
         
         struct Response {
-            var movies: [Movie]
+            var movieResults: MovieResults
         }
         
         struct ViewModel {
-            var movies: [Movie]
+            var movieResults: MovieResults
         }
     }
     

@@ -11,7 +11,7 @@ import Foundation
 class MovieRestApi: MovieService {
     
     func requestMovies(page: Int,
-                       success: @escaping ([Movie]) -> Void,
+                       success: @escaping (MovieResults) -> Void,
                        failure: @escaping (Error) -> Void = {_ in } ) {
         
         MovieResults.requestNewMovies(page: page, success: { (movies) in

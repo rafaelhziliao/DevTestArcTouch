@@ -34,7 +34,7 @@ extension MovieResults: Decodable {
     }
     
     public static func requestNewMovies(page: Int,
-                                        success: @escaping ([Movie]) -> Void,
+                                        success: @escaping (MovieResults) -> Void,
                                         failure: @escaping (Error) -> Void = {_ in }) {
         
             
@@ -43,7 +43,7 @@ extension MovieResults: Decodable {
             case let .success(response):
                 do {
                     let results = try JSONDecoder().decode(MovieResults.self, from: response.data)
-                    success(results.movies)
+                    success(results)
                 } catch let err {
                     print(err)
                 }
