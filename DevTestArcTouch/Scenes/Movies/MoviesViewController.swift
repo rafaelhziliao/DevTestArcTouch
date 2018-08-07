@@ -87,7 +87,12 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.movies.removeAll()
-        self.fetchMovies()
+        if self.isSearching {
+            self.searchMovie(movieTitle: self.movieWanted)
+        }
+        else {
+            self.fetchMovies()
+        }
         refreshControl.endRefreshing()
     }
   
@@ -102,6 +107,8 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
         return refreshControl
     }()
+    private var isSearching: Bool = false
+    private var movieWanted: String = ""
     
     private var movies: [Movie] = [] {
         didSet {
@@ -114,13 +121,17 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         interactor?.doSomething(request: request)
     }
     
+    func updateModel() {
+        
+    }
+    
     func fetchMovies(page: Int = 1) {
         let request = Movies.FetchMovies.Request(page: page)
         self.interactor?.fetchMovies(request: request)
     }
     
-    func searchMovie(movieTitle: String) {
-        let request = Movies.SearchMovie.Request(movieTitle: movieTitle)
+    func searchMovie(page: Int = 1, movieTitle: String) {
+        let request = Movies.SearchMovie.Request(page: page, movieTitle: movieTitle)
         self.interactor?.searchMovie(request: request)
     }
   
@@ -135,7 +146,9 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     }
     
     func displaySearchResults(viewModel: Movies.SearchMovie.ViewModel) {
-        self.movies = viewModel.movieResults.movies
+        viewModel.movieResults.movies.forEach{self.movies.append($0)}
+        self.lastPage = viewModel.movieResults.numberOfPages
+        self.currentPage = viewModel.movieResults.page
     }
 }
 
@@ -165,7 +178,13 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.movies.count - 1 {
             if self.currentPage <= self.lastPage {
-                self.fetchMovies(page: self.currentPage + 1)
+                if self.isSearching {
+                    self.searchMovie(page: self.currentPage + 1,
+                                     movieTitle: self.movieWanted)
+                }
+                else {
+                    self.fetchMovies(page: self.currentPage + 1)
+                }
             }
         }
     }
@@ -180,10 +199,16 @@ extension MoviesViewController: UISearchBarDelegate {
         let movieWanted: String
         if let _movieWanted = searchBar.text, !_movieWanted.isEmpty {
             movieWanted = _movieWanted
+            self.movies.removeAll()
             self.searchMovie(movieTitle: movieWanted)
+            self.isSearching = true
+            self.movieWanted = movieWanted
         }
         else {
+            self.movies.removeAll()
             self.fetchMovies()
+            self.isSearching = false
+            self.movieWanted = ""
         }
 
     }

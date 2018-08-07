@@ -17,7 +17,8 @@ protocol MovieService {
                        success: @escaping (MovieResults) -> Void,
                        failure: @escaping (Error) -> Void)
     
-    func requestSearchMovie(movieTitle: String,
+    func requestSearchMovie(page: Int,
+                            movieTitle: String,
                             success: @escaping (MovieResults) -> Void,
                             failure: @escaping (Error) -> Void)
 }
@@ -47,7 +48,7 @@ class MoviesWorker {
                             success: @escaping (MovieResults) -> Void,
                             failure: @escaping (Error) -> Void = {_ in }) {
         
-        self.service.requestSearchMovie(movieTitle: request.movieTitle, success: { (movies) in
+        self.service.requestSearchMovie(page: request.page, movieTitle: request.movieTitle, success: { (movies) in
             success(movies)
             
         }) { (error) in

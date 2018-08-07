@@ -22,11 +22,12 @@ class MovieRestApi: MovieService {
         }
     }
     
-    func requestSearchMovie(movieTitle: String,
-                              success: @escaping (MovieResults) -> Void,
-                              failure: @escaping (Error) -> Void = {_ in } ) {
+    func requestSearchMovie(page: Int,
+                            movieTitle: String,
+                            success: @escaping (MovieResults) -> Void,
+                            failure: @escaping (Error) -> Void = {_ in } ) {
         
-        MovieResults.requestSearchMovie(movieTitle: movieTitle, success: { (movies) in
+        MovieResults.requestSearchMovie(page: page, movieTitle: movieTitle, success: { (movies) in
             success(movies)
         }) { (error) in
             failure (error)

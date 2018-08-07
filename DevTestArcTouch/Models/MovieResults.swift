@@ -56,21 +56,27 @@ extension MovieResults: Decodable {
         }
     }
     
-    public static func requestSearchMovie(movieTitle: String,
-                                            success: @escaping (MovieResults) -> Void,
-                                            failure: @escaping (Error) -> Void = {_ in }) {
+    public static func requestSearchMovie(page: Int,
+                                          movieTitle: String,
+                                          success: @escaping (MovieResults) -> Void,
+                                          failure: @escaping (Error) -> Void = {_ in }) {
         
-        NetworkManager.provider.request(.search(movieTitle: movieTitle)) { result in
+        NetworkManager.provider.request(.search(page: page, movieTitle: movieTitle)) { result in
             switch result {
             case let .success(response):
                 do {
                     let results = try JSONDecoder().decode(MovieResults.self, from: response.data)
-                    success(results)
+                    DispatchQueue.main.async {
+                        success(results)
+                    }
+                    
                 } catch let err {
                     print(err)
                 }
             case let .failure(error):
-                  failure(error)
+                DispatchQueue.main.async {
+                    failure(error)
+                }
             }
         }
     }

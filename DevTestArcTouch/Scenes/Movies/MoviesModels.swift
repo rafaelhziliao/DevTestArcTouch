@@ -40,6 +40,7 @@ enum Movies {
     
     enum SearchMovie {
         struct Request {
+            var page: Int
             var movieTitle: String
         }
         
