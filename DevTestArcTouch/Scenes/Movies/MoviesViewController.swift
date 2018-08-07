@@ -15,6 +15,7 @@ import UIKit
 protocol MoviesDisplayLogic: class {
     func displaySomething(viewModel: Movies.Something.ViewModel)
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel)
+    func displaySearchResults(viewModel: Movies.SearchMovie.ViewModel)
 }
 
 class MoviesViewController: UIViewController, MoviesDisplayLogic {
@@ -85,7 +86,12 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     //@IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var findMovieSearchBar: UISearchBar!
     @IBOutlet var moviesTableView: UITableView!
-    private var movies: [Movie] = []
+
+    private var movies: [Movie] = [] {
+        didSet {
+            self.moviesTableView.reloadData()
+        }
+    }
     
     func doSomething() {
         let request = Movies.Something.Request()
@@ -96,6 +102,11 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         let request = Movies.FetchMovies.Request(page: 1)
         self.interactor?.fetchMovies(request: request)
     }
+    
+    func searchMovie(movieTitle: String) {
+        let request = Movies.SearchMovie.Request(movieTitle: movieTitle)
+        self.interactor?.searchMovie(request: request)
+    }
   
     func displaySomething(viewModel: Movies.Something.ViewModel) {
         //nameTextField.text = viewModel.name
@@ -103,7 +114,10 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel) {
         self.movies = viewModel.movieResults.movies
-        self.moviesTableView.reloadData()
+    }
+    
+    func displaySearchResults(viewModel: Movies.SearchMovie.ViewModel) {
+        self.movies = viewModel.movieResults.movies
     }
 }
 
@@ -133,5 +147,13 @@ extension MoviesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
         
+        let movieWanted: String
+        if let _movieWanted = searchBar.text, !_movieWanted.isEmpty {
+            movieWanted = _movieWanted
+            self.searchMovie(movieTitle: movieWanted)
+        } else {
+            self.fetchMovies()
+        }
+
     }
 }

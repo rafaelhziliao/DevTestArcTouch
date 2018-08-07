@@ -41,13 +41,18 @@ class MovieListCell: UITableViewCell {
     
     func render(movie: Movie) {
         self.titleLabel.text = movie.title
-        let date = movie.releaseDate
-        let year = date.index(date.startIndex, offsetBy: 3)
-        self.releaseDateLabel.text = String(date[...year])
+        let date = movie.releaseDate ?? ""
+        if !date.isEmpty {
+            let year = date.index(date.startIndex, offsetBy: 3)
+            self.releaseDateLabel.text = String(date[...year])
+        } else {
+            self.releaseDateLabel.text =  date
+        }
         
-        self.rateLabel.text = String(movie.voteAverage)
-        self.rateLabel.backgroundColor = movie.voteAverage > 5 ? UIColor.Colors.highRatingBackgroundColor : UIColor.Colors.lowRatingBackgroundColor
-        self.rateLabel.textColor = movie.voteAverage > 5 ? UIColor.black : UIColor.white
+        
+        self.rateLabel.text = String(movie.voteAverage!)
+        self.rateLabel.backgroundColor = movie.voteAverage! > 5.0 ? UIColor.Colors.highRatingBackgroundColor : UIColor.Colors.lowRatingBackgroundColor
+        self.rateLabel.textColor = movie.voteAverage! > 5.0 ? UIColor.black : UIColor.white
         self.overviewLabel.text = movie.overview
         
         self.posterImageview.af_setImage(withURL: URL(string: movie.posterPath(size: .small))!, imageTransition: .crossDissolve(0.2))

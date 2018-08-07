@@ -11,11 +11,11 @@ import Foundation
 struct Movie {
     let id: Int
     let posterPath: String?
-    let backDrop: String
+    let backDrop: String?
     let title: String
-    let releaseDate: String
-    let overview: String
-    let voteAverage: Double
+    let releaseDate: String?
+    let overview: String?
+    let voteAverage: Double?
     
     private let imageURLPrefix = "https://image.tmdb.org/t/p"
     
@@ -56,11 +56,11 @@ extension Movie: Decodable {
         let container = try decoder.container(keyedBy: MovieCodingKeys.self)
         
         id = try container.decode(Int.self, forKey: .id)
-        posterPath = try container.decode(String.self, forKey: .posterPath)
-        backDrop = try container.decode(String.self, forKey: .backDrop)
+        posterPath = try? container.decode(String.self, forKey: .posterPath)
+        backDrop = try? container.decode(String.self, forKey: .backDrop)
         title = try container.decode(String.self, forKey: .title)
-        releaseDate = try container.decode(String.self, forKey: .releaseDate)
-        overview = try container.decode(String.self, forKey: .overview)
-        voteAverage = try container.decode(Double.self, forKey: .voteAverage)
+        releaseDate = try? container.decode(String.self, forKey: .releaseDate)
+        overview = try? container.decode(String.self, forKey: .overview)
+        voteAverage = try? container.decode(Double.self, forKey: .voteAverage)
     }
 }

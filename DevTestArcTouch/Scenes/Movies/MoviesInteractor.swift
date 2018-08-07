@@ -15,6 +15,7 @@ import UIKit
 protocol MoviesBusinessLogic {
     func doSomething(request: Movies.Something.Request)
     func fetchMovies(request: Movies.FetchMovies.Request)
+    func searchMovie(request: Movies.SearchMovie.Request)
 }
 
 protocol MoviesDataStore {
@@ -47,6 +48,16 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
             }, failure: { [weak self] (error) in
             let response = Movies.Error.Response(message: error.localizedDescription)
             self?.presenter?.presentFetchError(response: response)
+        })
+    }
+    
+    func searchMovie(request: Movies.SearchMovie.Request) {
+        self.worker?.requestSearchMovie(request: request, success: { [weak self] (moviesResults) in
+            let response = Movies.SearchMovie.Response(movieResults: moviesResults)
+            self?.presenter?.presentWantedMovie(response: response)
+            }, failure: { [weak self] (error) in
+                let response = Movies.Error.Response(message: error.localizedDescription)
+                self?.presenter?.presentFetchError(response: response)
         })
     }
 

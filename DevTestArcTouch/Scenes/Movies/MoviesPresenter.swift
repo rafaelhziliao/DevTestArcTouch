@@ -16,6 +16,8 @@ protocol MoviesPresentationLogic {
     func presentSomething(response: Movies.Something.Response)
     func presentFetchedMovies(response: Movies.FetchMovies.Response)
     func presentFetchError(response: Movies.Error.Response)
+    func presentWantedMovie(response: Movies.SearchMovie.Response)
+    
 }
 
 class MoviesPresenter: MoviesPresentationLogic {
@@ -36,5 +38,10 @@ class MoviesPresenter: MoviesPresentationLogic {
     
     func presentFetchError(response: Movies.Error.Response) {
         
+    }
+    
+    func presentWantedMovie(response: Movies.SearchMovie.Response) {
+        let viewModel = Movies.SearchMovie.ViewModel(movieResults: response.movieResults)
+        self.viewController?.displaySearchResults(viewModel: viewModel)
     }
 }
