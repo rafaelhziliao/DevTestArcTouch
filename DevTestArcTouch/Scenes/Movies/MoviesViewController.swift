@@ -48,6 +48,20 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         router.viewController = viewController
         router.dataStore = interactor
     }
+    
+    func setupViews() {
+        self.moviesTableView.delegate = self
+        self.moviesTableView.dataSource = self
+        self.moviesTableView.backgroundColor = UIColor.Colors.primaryBackgroundColor
+        self.moviesTableView.separatorColor = UIColor.Colors.borderColor
+        self.moviesTableView.addSubview(self.refreshControl)
+        
+        self.findMovieSearchBar.tintColor = UIColor.Colors.grayColor
+        self.findMovieSearchBar.barStyle = .black
+        self.findMovieSearchBar.placeholder = "Find your favorite movie..."
+        self.findMovieSearchBar.delegate = self
+        self.findMovieSearchBar.enablesReturnKeyAutomatically = false
+    }
   
     // MARK: Routing
   
@@ -71,17 +85,10 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
   
     // MARK: Do something
     
-    func setupViews() {
-        self.moviesTableView.delegate = self
-        self.moviesTableView.dataSource = self
-        self.moviesTableView.backgroundColor = UIColor.Colors.primaryBackgroundColor
-        self.moviesTableView.separatorColor = UIColor.Colors.borderColor
-        
-        self.findMovieSearchBar.tintColor = UIColor.Colors.grayColor
-        self.findMovieSearchBar.barStyle = .black
-        self.findMovieSearchBar.placeholder = "Find your favorite movie..."
-        self.findMovieSearchBar.delegate = self
-        self.findMovieSearchBar.enablesReturnKeyAutomatically = false
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.movies.removeAll()
+        self.fetchMovies()
+        refreshControl.endRefreshing()
     }
   
     //@IBOutlet weak var nameTextField: UITextField!
@@ -89,6 +96,12 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     @IBOutlet var moviesTableView: UITableView!
     private var currentPage: Int = 0
     private var lastPage: Int = 0
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.Colors.grayColor
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        return refreshControl
+    }()
     
     private var movies: [Movie] = [] {
         didSet {

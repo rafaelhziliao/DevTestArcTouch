@@ -31,7 +31,6 @@ class MoviesPresenter: MoviesPresentationLogic {
     }
     
     func presentFetchedMovies(response: Movies.FetchMovies.Response) {
-        
         let viewModel = Movies.FetchMovies.ViewModel(movieResults: response.movieResults)
         self.viewController?.displayMovies(viewModel: viewModel)
     }
