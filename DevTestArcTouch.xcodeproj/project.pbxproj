@@ -23,6 +23,12 @@
 		5838C71F211541CE00B1E8FA /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5838C71E211541CE00B1E8FA /* MovieListCell.swift */; };
 		5838C7222115485B00B1E8FA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5838C7212115485B00B1E8FA /* Colors.swift */; };
 		5838C72421168EFC00B1E8FA /* MovieRestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5838C72321168EFC00B1E8FA /* MovieRestApi.swift */; };
+		584194F6211A368300FB52E8 /* MovieDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F0211A368300FB52E8 /* MovieDetailPresenter.swift */; };
+		584194F7211A368300FB52E8 /* MovieDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F1211A368300FB52E8 /* MovieDetailWorker.swift */; };
+		584194F8211A368300FB52E8 /* MovieDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F2211A368300FB52E8 /* MovieDetailRouter.swift */; };
+		584194F9211A368300FB52E8 /* MovieDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F3211A368300FB52E8 /* MovieDetailModels.swift */; };
+		584194FA211A368300FB52E8 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F4211A368300FB52E8 /* MovieDetailViewController.swift */; };
+		584194FB211A368300FB52E8 /* MovieDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F5211A368300FB52E8 /* MovieDetailInteractor.swift */; };
 		58643CC22113229800236762 /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58643CC12113229800236762 /* MovieApi.swift */; };
 		58643CC421132E3A00236762 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58643CC321132E3A00236762 /* NetWorkManager.swift */; };
 		5FBC97141510BCEE3B465622 /* Pods_DevTestArcTouchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACEAFCFC911DDF7ED4768E2 /* Pods_DevTestArcTouchTests.framework */; };
@@ -60,6 +66,12 @@
 		5838C71E211541CE00B1E8FA /* MovieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
 		5838C7212115485B00B1E8FA /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5838C72321168EFC00B1E8FA /* MovieRestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRestApi.swift; sourceTree = "<group>"; };
+		584194F0211A368300FB52E8 /* MovieDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPresenter.swift; sourceTree = "<group>"; };
+		584194F1211A368300FB52E8 /* MovieDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailWorker.swift; sourceTree = "<group>"; };
+		584194F2211A368300FB52E8 /* MovieDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailRouter.swift; sourceTree = "<group>"; };
+		584194F3211A368300FB52E8 /* MovieDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModels.swift; sourceTree = "<group>"; };
+		584194F4211A368300FB52E8 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		584194F5211A368300FB52E8 /* MovieDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInteractor.swift; sourceTree = "<group>"; };
 		58643CC12113229800236762 /* MovieApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApi.swift; sourceTree = "<group>"; };
 		58643CC321132E3A00236762 /* NetWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		AACEAFCFC911DDF7ED4768E2 /* Pods_DevTestArcTouchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTestArcTouchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +233,12 @@
 		5838C70F2114D23000B1E8FA /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
+				584194F0211A368300FB52E8 /* MovieDetailPresenter.swift */,
+				584194F1211A368300FB52E8 /* MovieDetailWorker.swift */,
+				584194F2211A368300FB52E8 /* MovieDetailRouter.swift */,
+				584194F3211A368300FB52E8 /* MovieDetailModels.swift */,
+				584194F4211A368300FB52E8 /* MovieDetailViewController.swift */,
+				584194F5211A368300FB52E8 /* MovieDetailInteractor.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -413,8 +431,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				584194FB211A368300FB52E8 /* MovieDetailInteractor.swift in Sources */,
 				580D063821113700002D0AEC /* AppDelegate.swift in Sources */,
 				5838C71A2114D26900B1E8FA /* MoviesViewController.swift in Sources */,
+				584194F8211A368300FB52E8 /* MovieDetailRouter.swift in Sources */,
 				5838C71F211541CE00B1E8FA /* MovieListCell.swift in Sources */,
 				5838C7182114D26900B1E8FA /* MoviesRouter.swift in Sources */,
 				58643CC421132E3A00236762 /* NetWorkManager.swift in Sources */,
@@ -422,11 +442,15 @@
 				5838C7172114D26900B1E8FA /* MoviesWorker.swift in Sources */,
 				5838C7192114D26900B1E8FA /* MoviesModels.swift in Sources */,
 				5838C7222115485B00B1E8FA /* Colors.swift in Sources */,
+				584194F6211A368300FB52E8 /* MovieDetailPresenter.swift in Sources */,
 				5838C72421168EFC00B1E8FA /* MovieRestApi.swift in Sources */,
 				582A7F562111D337007FC03D /* Movie.swift in Sources */,
+				584194FA211A368300FB52E8 /* MovieDetailViewController.swift in Sources */,
+				584194F9211A368300FB52E8 /* MovieDetailModels.swift in Sources */,
 				5838C71B2114D26900B1E8FA /* MoviesInteractor.swift in Sources */,
 				582A7F582111D60F007FC03D /* MovieResults.swift in Sources */,
 				5838C7162114D26900B1E8FA /* MoviesPresenter.swift in Sources */,
+				584194F7211A368300FB52E8 /* MovieDetailWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
