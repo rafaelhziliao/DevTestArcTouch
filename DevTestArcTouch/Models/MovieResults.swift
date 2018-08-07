@@ -37,18 +37,21 @@ extension MovieResults: Decodable {
                                         success: @escaping (MovieResults) -> Void,
                                         failure: @escaping (Error) -> Void = {_ in }) {
         
-            
         NetworkManager.provider.request(.newMovies(page: page)) { result in
             switch result {
             case let .success(response):
                 do {
                     let results = try JSONDecoder().decode(MovieResults.self, from: response.data)
-                    success(results)
+                    DispatchQueue.main.async {
+                        success(results)
+                    }
                 } catch let err {
                     print(err)
                 }
             case let .failure(error):
-                failure(error)
+                DispatchQueue.main.async {
+                    failure(error)
+                }
             }
         }
     }
