@@ -12,6 +12,7 @@ import Moya
 enum MovieApi {
     case newMovies(page: Int)
     case search(page: Int, movieTitle: String)
+    case movieDetails(id: Int)
 }
 
 extension MovieApi: TargetType {
@@ -28,12 +29,14 @@ extension MovieApi: TargetType {
             return "/movie/now_playing"
         case .search:
             return "/search/movie"
+        case .movieDetails(let id):
+            return "/movie/\(id)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .newMovies, .search:
+        case .newMovies, .search, .movieDetails:
             return .get
         }
     }
@@ -48,19 +51,21 @@ extension MovieApi: TargetType {
             return ["page": page, "api_key": NetworkManager.apiKey]
         case .search(let page, let movieTitle):
             return ["page": page, "api_key": NetworkManager.apiKey, "query": movieTitle]
+        case .movieDetails:
+            return ["api_key":NetworkManager.apiKey]
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .newMovies, .search:
+        case .newMovies, .search, .movieDetails:
             return URLEncoding.queryString
         }
     }
     
     var task: Task {
         switch self {
-        case .newMovies, .search:
+        case .newMovies, .search, .movieDetails:
             return .requestParameters(parameters: parameters, encoding: parameterEncoding)
         }
     }
