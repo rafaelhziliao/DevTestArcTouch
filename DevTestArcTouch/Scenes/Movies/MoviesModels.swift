@@ -53,6 +53,22 @@ enum Movies {
         }
     }
 
+
+    enum FetchMovieDetails {
+        struct Request {
+            
+            var movie: Movie
+        }
+        
+        struct Response {
+            var movie: Movie
+        }
+        
+        struct ViewModel {
+            var movie: Movie
+        }
+    }
+
     
     enum Error {
         struct Request {

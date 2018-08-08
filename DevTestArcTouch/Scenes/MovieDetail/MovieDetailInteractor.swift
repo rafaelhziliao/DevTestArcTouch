@@ -12,30 +12,26 @@
 
 import UIKit
 
-protocol MovieDetailBusinessLogic
-{
-  func doSomething(request: MovieDetail.Something.Request)
+protocol MovieDetailBusinessLogic {
+    func doSomething(request: MovieDetail.Something.Request)
 }
 
-protocol MovieDetailDataStore
-{
-  //var name: String { get set }
+protocol MovieDetailDataStore {
+  var movie: Movie! { get set }
 }
 
-class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore
-{
-  var presenter: MovieDetailPresentationLogic?
-  var worker: MovieDetailWorker?
-  //var name: String = ""
+class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore {
+    var presenter: MovieDetailPresentationLogic?
+    var worker: MovieDetailWorker?
+    var movie: Movie!
   
-  // MARK: Do something
+    // MARK: Do something
   
-  func doSomething(request: MovieDetail.Something.Request)
-  {
-    worker = MovieDetailWorker()
-    worker?.doSomeWork()
+    func doSomething(request: MovieDetail.Something.Request) {
+        worker = MovieDetailWorker()
+        worker?.doSomeWork()
     
-    let response = MovieDetail.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+        let response = MovieDetail.Something.Response()
+        presenter?.presentSomething(response: response)
+    }
 }

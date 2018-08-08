@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movies-->
+        <!--Movies View Controller-->
         <scene sceneID="QrA-eL-1fV">
             <objects>
-                <tableViewController id="CVq-ko-48g" userLabel="Movies" customClass="MoviesViewController" customModule="DevTestArcTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="CVq-ko-48g" customClass="MoviesViewController" customModule="DevTestArcTouch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HwX-Dd-xkt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,22 +121,24 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="vq2-bv-olb">
-                        <barButtonItem key="backBarButtonItem" title=" " id="EVr-8o-KdZ"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="EVr-8o-KdZ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="findMovieSearchBar" destination="cXl-R9-Tag" id="q9c-o2-TS1"/>
                         <outlet property="moviesTableView" destination="HwX-Dd-xkt" id="G5y-ra-Al5"/>
-                        <segue destination="xVZ-Io-p7e" kind="show" id="hLG-oj-FMM"/>
+                        <segue destination="xVZ-Io-p7e" kind="show" identifier="MovieDetail" id="hLG-oj-FMM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUU-ZZ-51g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="312.80000000000001" y="183.95802098950526"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail View Controller-->
         <scene sceneID="o4s-Gp-nav">
             <objects>
-                <viewController id="xVZ-Io-p7e" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" id="xVZ-Io-p7e" customClass="MovieDetailViewController" customModule="DevTestArcTouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lVE-CX-mwL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

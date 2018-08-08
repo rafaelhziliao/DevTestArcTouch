@@ -16,6 +16,7 @@ protocol MoviesDisplayLogic: class {
     func displaySomething(viewModel: Movies.Something.ViewModel)
     func displayMovies(viewModel: Movies.FetchMovies.ViewModel)
     func displaySearchResults(viewModel: Movies.SearchMovie.ViewModel)
+    func displayMovieDetails(viewModel: Movies.FetchMovieDetails.ViewModel)
 }
 
 class MoviesViewController: UIViewController, MoviesDisplayLogic {
@@ -150,6 +151,10 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         self.lastPage = viewModel.movieResults.numberOfPages
         self.currentPage = viewModel.movieResults.page
     }
+    
+    func displayMovieDetails(viewModel: Movies.FetchMovieDetails.ViewModel) {
+        self.router?.routeToMovieDetails(segue: nil)
+    }
 }
 
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -173,6 +178,9 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        let movie = self.movies[indexPath.row]
+        let request = Movies.FetchMovieDetails.Request(movie: movie)
+        self.interactor?.fetchMovieDetails(request: request)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

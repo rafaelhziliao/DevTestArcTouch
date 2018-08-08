@@ -16,16 +16,17 @@ protocol MoviesBusinessLogic {
     func doSomething(request: Movies.Something.Request)
     func fetchMovies(request: Movies.FetchMovies.Request)
     func searchMovie(request: Movies.SearchMovie.Request)
+    func fetchMovieDetails(request: Movies.FetchMovieDetails.Request)
 }
 
 protocol MoviesDataStore {
-    //var name: String { get set }
+    var movie: Movie! { get set }
 }
 
 class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     var presenter: MoviesPresentationLogic?
     var worker: MoviesWorker?
-    //var name: String = ""
+    var movie: Movie!
   
     init () {
         self.worker = MoviesWorker(service: MovieRestApi())
@@ -59,6 +60,12 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
                 let response = Movies.Error.Response(message: error.localizedDescription)
                 self?.presenter?.presentFetchError(response: response)
         })
+    }
+    
+    func fetchMovieDetails(request: Movies.FetchMovieDetails.Request) {
+        let response = Movies.FetchMovieDetails.Response(movie: request.movie)
+        self.movie = request.movie
+        self.presenter?.presentMovieDetails(response: response)
     }
 
 }
