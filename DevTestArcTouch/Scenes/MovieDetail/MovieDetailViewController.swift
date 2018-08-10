@@ -52,12 +52,14 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
     func setupViews() {
         self.view.backgroundColor = UIColor.Colors.primaryBackgroundColor
         self.detailOverviewView.backgroundColor = UIColor.Colors.primaryBackgroundColor
+        self.rateView.backgroundColor = UIColor.Colors.primaryBackgroundColor
         self.titleLabel.textColor = UIColor.Colors.lightColor
         self.runtimeLabel.textColor = UIColor.Colors.lightColor
         self.genresLabel.textColor = UIColor.Colors.grayColor
         self.tagLineLabel.textColor = UIColor.Colors.lightColor
         self.overviewLabel.textColor = UIColor.Colors.lightColor
         self.overviewTextLabel.textColor = UIColor.Colors.grayColor
+        
     }
     
     func setupEffects() {
@@ -86,8 +88,6 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
         super.viewDidLoad()
         doSomething()
         setupViews()
-        //setupEffects()
-       
         self.fetchMovieDetails()
     }
     
@@ -111,6 +111,7 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
     @IBOutlet var detailView: UIView!
     @IBOutlet weak var detailPosterView: UIView!
     @IBOutlet weak var detailOverviewView: UIView!
+    @IBOutlet weak var rateView: UIView!
     
     func doSomething() {
         let request = MovieDetail.Something.Request()
