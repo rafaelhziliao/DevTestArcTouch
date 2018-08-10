@@ -44,7 +44,9 @@ class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore {
         var updatedRequest = request
         updatedRequest.movie = self.movie
         self.worker?.requestMovieDetails(request: updatedRequest, success: {[weak self] (movie) in
-            self?.movie = movie
+            self?.movie.genres = movie.genres
+            self?.movie.tagline = movie.tagline
+            self?.movie.runtime = movie.runtime
             
             guard let _movie = self?.movie else {
                 return
