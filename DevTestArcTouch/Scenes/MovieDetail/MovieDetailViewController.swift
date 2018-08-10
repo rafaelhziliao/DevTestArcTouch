@@ -131,5 +131,6 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
         self.rateLabel.textColor = viewModel.movie.voteAverage! > 5.0 ? UIColor.black : UIColor.white
         self.runtimeLabel.text = viewModel.movie.formatedRunTime
         self.genresLabel.text = viewModel.movie.genres?.map{$0.name}.joined(separator: ", ")
+        self.overviewTextLabel.text = viewModel.movie.overview
     }
 }
