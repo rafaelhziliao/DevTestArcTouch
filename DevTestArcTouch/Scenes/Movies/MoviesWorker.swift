@@ -21,6 +21,10 @@ protocol MovieService {
                             movieTitle: String,
                             success: @escaping (MovieResults) -> Void,
                             failure: @escaping (Error) -> Void)
+    
+    func requestMovieDetails(id: Int,
+                             success: @escaping (Movie) -> Void,
+                             failure: @escaping (Error) -> Void)
 }
 
 class MoviesWorker {
@@ -54,6 +58,19 @@ class MoviesWorker {
         }) { (error) in
             failure(error)
             
+        }
+
+    }
+    
+    func requestMovieDetails(request: MovieDetail.FetchMovieDetails.Request,
+                             success: @escaping (Movie) -> Void,
+                             failure: @escaping (Error) -> Void = {_ in }) {
+        
+        self.service.requestMovieDetails(id: request.movie!.id, success: { (movie) in
+            success(movie)
+            
+        }) { (error) in
+            failure(error)
         }
 
     }

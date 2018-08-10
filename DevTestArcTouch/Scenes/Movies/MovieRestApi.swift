@@ -36,4 +36,15 @@ class MovieRestApi: MovieService {
 
     }
     
+    func requestMovieDetails(id: Int,
+                             success: @escaping (Movie) -> Void,
+                             failure: @escaping (Error) -> Void = {_ in }) {
+        
+        Movie.requestMovieDetails(id: id, success: { (movie) in
+            success(movie)
+        }) { (error) in
+            failure(error)
+        }
+    }
+    
 }

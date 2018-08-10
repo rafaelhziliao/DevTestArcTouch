@@ -11,79 +11,125 @@
 //
 
 import UIKit
+import AlamofireImage
 
-protocol MovieDetailDisplayLogic: class
-{
-  func displaySomething(viewModel: MovieDetail.Something.ViewModel)
+protocol MovieDetailDisplayLogic: class {
+    func displaySomething(viewModel: MovieDetail.Something.ViewModel)
+    func displayMovieDetails(viewModel: MovieDetail.FetchMovieDetails.ViewModel)
 }
 
-class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic
-{
-  var interactor: MovieDetailBusinessLogic?
-  var router: (NSObjectProtocol & MovieDetailRoutingLogic & MovieDetailDataPassing)?
+class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
+    var interactor: MovieDetailBusinessLogic?
+    var router: (NSObjectProtocol & MovieDetailRoutingLogic & MovieDetailDataPassing)?
 
-  // MARK: Object lifecycle
+    // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = MovieDetailInteractor()
-    let presenter = MovieDetailPresenter()
-    let router = MovieDetailRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
   
-  // MARK: View lifecycle
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
   
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
+    // MARK: Setup
   
-  // MARK: Do something
+    private func setup() {
+        let viewController = self
+        let interactor = MovieDetailInteractor()
+        let presenter = MovieDetailPresenter()
+        let router = MovieDetailRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    func setupViews() {
+        self.view.backgroundColor = UIColor.Colors.primaryBackgroundColor
+        self.detailOverviewView.backgroundColor = UIColor.Colors.primaryBackgroundColor
+        self.titleLabel.textColor = UIColor.Colors.lightColor
+        self.runtimeLabel.textColor = UIColor.Colors.lightColor
+        self.genresLabel.textColor = UIColor.Colors.grayColor
+        self.tagLineLabel.textColor = UIColor.Colors.lightColor
+        self.overviewLabel.textColor = UIColor.Colors.lightColor
+        self.overviewTextLabel.textColor = UIColor.Colors.grayColor
+    }
+    
+    func setupEffects() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(blurEffectView)
+        blurEffectView.frame = CGRect(x: 0, y: 0, width: self.detailPosterView.frame.width, height: self.detailPosterView.frame.height)
+    }
   
-  //@IBOutlet weak var nameTextField: UITextField!
+    // MARK: Routing
   
-  func doSomething()
-  {
-    let request = MovieDetail.Something.Request()
-    interactor?.doSomething(request: request)
-  }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
+    }
   
-  func displaySomething(viewModel: MovieDetail.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    // MARK: View lifecycle
+  
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doSomething()
+        setupViews()
+        //setupEffects()
+       
+        self.fetchMovieDetails()
+    }
+    
+    // MARK: Do something
+    
+    func fetchMovieDetails() {
+        let request = MovieDetail.FetchMovieDetails.Request(movie: nil)
+        self.interactor?.fetchMovieDetails(request: request)
+    }
+    
+    //@IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var backDropImageView: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var tagLineLabel: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet weak var runtimeLabel: UILabel!
+    @IBOutlet weak var genresLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var overviewTextLabel: UILabel!
+    @IBOutlet var detailView: UIView!
+    @IBOutlet weak var detailPosterView: UIView!
+    @IBOutlet weak var detailOverviewView: UIView!
+    
+    func doSomething() {
+        let request = MovieDetail.Something.Request()
+        interactor?.doSomething(request: request)
+    }
+  
+    func displaySomething(viewModel: MovieDetail.Something.ViewModel) {
+        //nameTextField.text = viewModel.name
+    }
+    
+    func displayMovieDetails(viewModel: MovieDetail.FetchMovieDetails.ViewModel) {
+        self.backDropImageView.af_setImage(withURL: URL(string: viewModel.movie.posterPath(size: .medium))!, imageTransition: .crossDissolve(0.2))
+        self.posterImageView.af_setImage(withURL: URL(string: viewModel.movie.posterPath(size: .small))!, imageTransition: .crossDissolve(0.2))
+        self.titleLabel.text = viewModel.movie.title
+        self.tagLineLabel.text = viewModel.movie.tagline
+        self.rateLabel.text = String(viewModel.movie.voteAverage!)
+        self.rateLabel.backgroundColor = viewModel.movie.voteAverage! > 5.0 ? UIColor.Colors.highRatingBackgroundColor : UIColor.Colors.lowRatingBackgroundColor
+        self.rateLabel.textColor = viewModel.movie.voteAverage! > 5.0 ? UIColor.black : UIColor.white
+        self.runtimeLabel.text = viewModel.movie.formatedRunTime
+        self.genresLabel.text = viewModel.movie.genres?.map{$0.name}.joined(separator: ", ")
+    }
 }

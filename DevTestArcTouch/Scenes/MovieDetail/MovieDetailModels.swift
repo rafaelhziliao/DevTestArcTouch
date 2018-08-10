@@ -12,20 +12,40 @@
 
 import UIKit
 
-enum MovieDetail
-{
-  // MARK: Use cases
+enum MovieDetail {
+    // MARK: Use cases
   
-  enum Something
-  {
-    struct Request
-    {
+    enum Something {
+        struct Request {
+        }
+        struct Response {
+        }
+        struct ViewModel {
+        }
     }
-    struct Response
-    {
+    
+    enum FetchMovieDetails {
+        struct Request {
+            var movie: Movie?
+        }
+        struct Response {
+            var movie: Movie
+        }
+        struct ViewModel {
+            var movie: Movie
+        }
     }
-    struct ViewModel
-    {
+    
+    enum ErrorFetchMovieDetais {
+        struct Request {
+            
+        }
+        struct Response {
+            var message: String
+        }
+        struct ViewModel {
+            var message: String
+        }
     }
-  }
+
 }

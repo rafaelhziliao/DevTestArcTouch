@@ -12,20 +12,28 @@
 
 import UIKit
 
-protocol MovieDetailPresentationLogic
-{
-  func presentSomething(response: MovieDetail.Something.Response)
+protocol MovieDetailPresentationLogic {
+    func presentSomething(response: MovieDetail.Something.Response)
+    func presentMovieDetails(response: MovieDetail.FetchMovieDetails.Response)
+    func presentErrorFetchMovieDetails(response: MovieDetail.ErrorFetchMovieDetais.Response)
 }
 
-class MovieDetailPresenter: MovieDetailPresentationLogic
-{
-  weak var viewController: MovieDetailDisplayLogic?
+class MovieDetailPresenter: MovieDetailPresentationLogic {
+    weak var viewController: MovieDetailDisplayLogic?
   
-  // MARK: Do something
+    // MARK: Do something
   
-  func presentSomething(response: MovieDetail.Something.Response)
-  {
-    let viewModel = MovieDetail.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentSomething(response: MovieDetail.Something.Response) {
+        let viewModel = MovieDetail.Something.ViewModel()
+        viewController?.displaySomething(viewModel: viewModel)
+    }
+    
+    func presentMovieDetails(response: MovieDetail.FetchMovieDetails.Response) {
+        let viewModel = MovieDetail.FetchMovieDetails.ViewModel(movie: response.movie)
+        viewController?.displayMovieDetails(viewModel:  viewModel)
+    }
+    
+    func presentErrorFetchMovieDetails(response: MovieDetail.ErrorFetchMovieDetais.Response) {
+        
+    }
 }
