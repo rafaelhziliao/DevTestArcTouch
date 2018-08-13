@@ -54,6 +54,7 @@ struct Movie {
         }
     }
     
+    
 }
 
 extension Movie: Decodable {

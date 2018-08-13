@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58085527211F4822007FD827 /* MovieDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58085526211F4822007FD827 /* MovieDetailCell.swift */; };
 		580D063821113700002D0AEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D063721113700002D0AEC /* AppDelegate.swift */; };
 		580D063D21113700002D0AEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580D063B21113700002D0AEC /* Main.storyboard */; };
 		580D063F21113702002D0AEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 580D063E21113702002D0AEC /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		584194FB211A368300FB52E8 /* MovieDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F5211A368300FB52E8 /* MovieDetailInteractor.swift */; };
 		58643CC22113229800236762 /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58643CC12113229800236762 /* MovieApi.swift */; };
 		58643CC421132E3A00236762 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58643CC321132E3A00236762 /* NetWorkManager.swift */; };
+		58CD660121210EC70032ACA4 /* arctouch-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CD660021210EC60032ACA4 /* arctouch-logo.png */; };
 		5FBC97141510BCEE3B465622 /* Pods_DevTestArcTouchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACEAFCFC911DDF7ED4768E2 /* Pods_DevTestArcTouchTests.framework */; };
 		D64735C766EE205C45391BF6 /* Pods_DevTestArcTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8D556F0CDC5DDCB1A116F2 /* Pods_DevTestArcTouch.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58085526211F4822007FD827 /* MovieDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailCell.swift; sourceTree = "<group>"; };
 		580D063421113700002D0AEC /* DevTestArcTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTestArcTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		580D063721113700002D0AEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		580D063C21113700002D0AEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		584194F5211A368300FB52E8 /* MovieDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInteractor.swift; sourceTree = "<group>"; };
 		58643CC12113229800236762 /* MovieApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApi.swift; sourceTree = "<group>"; };
 		58643CC321132E3A00236762 /* NetWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
+		58CD660021210EC60032ACA4 /* arctouch-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arctouch-logo.png"; sourceTree = "<group>"; };
 		AACEAFCFC911DDF7ED4768E2 /* Pods_DevTestArcTouchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTestArcTouchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8D556F0CDC5DDCB1A116F2 /* Pods_DevTestArcTouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTestArcTouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8E46AB35AADE4E3D3C754B /* Pods-DevTestArcTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTestArcTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DevTestArcTouch/Pods-DevTestArcTouch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			children = (
 				580D06582111373C002D0AEC /* StoryBoards */,
 				580D063E21113702002D0AEC /* Assets.xcassets */,
+				58CD660221210ED50032ACA4 /* Images */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				584194F3211A368300FB52E8 /* MovieDetailModels.swift */,
 				584194F4211A368300FB52E8 /* MovieDetailViewController.swift */,
 				584194F5211A368300FB52E8 /* MovieDetailInteractor.swift */,
+				58085526211F4822007FD827 /* MovieDetailCell.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -249,6 +255,14 @@
 				5838C7212115485B00B1E8FA /* Colors.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		58CD660221210ED50032ACA4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				58CD660021210EC60032ACA4 /* arctouch-logo.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		6A95626FE9172A9C6BE4F10A /* Pods */ = {
@@ -349,6 +363,7 @@
 				580D064221113702002D0AEC /* LaunchScreen.storyboard in Resources */,
 				580D063F21113702002D0AEC /* Assets.xcassets in Resources */,
 				580D063D21113700002D0AEC /* Main.storyboard in Resources */,
+				58CD660121210EC70032ACA4 /* arctouch-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +466,7 @@
 				582A7F582111D60F007FC03D /* MovieResults.swift in Sources */,
 				5838C7162114D26900B1E8FA /* MoviesPresenter.swift in Sources */,
 				584194F7211A368300FB52E8 /* MovieDetailWorker.swift in Sources */,
+				58085527211F4822007FD827 /* MovieDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

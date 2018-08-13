@@ -50,25 +50,9 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
     }
     
     func setupViews() {
-        self.view.backgroundColor = UIColor.Colors.primaryBackgroundColor
-        self.detailOverviewView.backgroundColor = UIColor.Colors.primaryBackgroundColor
-        self.rateView.backgroundColor = UIColor.Colors.primaryBackgroundColor
-        self.titleLabel.textColor = UIColor.Colors.lightColor
-        self.runtimeLabel.textColor = UIColor.Colors.lightColor
-        self.genresLabel.textColor = UIColor.Colors.grayColor
-        self.tagLineLabel.textColor = UIColor.Colors.lightColor
-        self.overviewLabel.textColor = UIColor.Colors.lightColor
-        self.overviewTextLabel.textColor = UIColor.Colors.grayColor
-        
     }
     
     func setupEffects() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurEffectView)
-        blurEffectView.frame = CGRect(x: 0, y: 0, width: self.detailPosterView.frame.width, height: self.detailPosterView.frame.height)
     }
   
     // MARK: Routing
@@ -87,8 +71,12 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         doSomething()
-        setupViews()
         self.fetchMovieDetails()
+        self.detailTableView.delegate = self
+        self.detailTableView.dataSource = self
+        self.detailTableView.rowHeight = 400
+        self.detailTableView.backgroundColor = UIColor.Colors.primaryBackgroundColor
+        self.detailTableView.separatorColor = UIColor.Colors.primaryBackgroundColor
     }
     
     // MARK: Do something
@@ -99,19 +87,13 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
     }
     
     //@IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet var detailTableView: UITableView!
     @IBOutlet weak var backDropImageView: UIImageView!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var tagLineLabel: UILabel!
-    @IBOutlet weak var rateLabel: UILabel!
-    @IBOutlet weak var runtimeLabel: UILabel!
-    @IBOutlet weak var genresLabel: UILabel!
-    @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var overviewTextLabel: UILabel!
-    @IBOutlet var detailView: UIView!
-    @IBOutlet weak var detailPosterView: UIView!
-    @IBOutlet weak var detailOverviewView: UIView!
-    @IBOutlet weak var rateView: UIView!
+    private var movie: Movie? {
+        didSet {
+            self.detailTableView.reloadData()
+        }
+    }
     
     func doSomething() {
         let request = MovieDetail.Something.Request()
@@ -124,13 +106,32 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic {
     
     func displayMovieDetails(viewModel: MovieDetail.FetchMovieDetails.ViewModel) {
         self.backDropImageView.af_setImage(withURL: URL(string: viewModel.movie.posterPath(size: .medium))!, imageTransition: .crossDissolve(0.2))
-        self.posterImageView.af_setImage(withURL: URL(string: viewModel.movie.posterPath(size: .small))!, imageTransition: .crossDissolve(0.2))
-        self.titleLabel.text = viewModel.movie.title
-        self.tagLineLabel.text = viewModel.movie.tagline
-        self.rateLabel.text = String(viewModel.movie.voteAverage!)
-        self.rateLabel.backgroundColor = viewModel.movie.voteAverage! > 5.0 ? UIColor.Colors.highRatingBackgroundColor : UIColor.Colors.lowRatingBackgroundColor
-        self.rateLabel.textColor = viewModel.movie.voteAverage! > 5.0 ? UIColor.black : UIColor.white
-        self.runtimeLabel.text = viewModel.movie.formatedRunTime
-        self.genresLabel.text = viewModel.movie.genres?.map{$0.name}.joined(separator: ", ")
+        self.movie = viewModel.movie
     }
 }
+
+extension MovieDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = detailTableView.dequeueReusableCell(withIdentifier: MovieDetailCell.identifier, for: indexPath) as? MovieDetailCell {
+
+            guard let _movie = self.movie else {
+                return UITableViewCell()
+            }
+            
+            cell.render(movie: _movie)
+
+            return cell
+        }
+        else {
+            return UITableViewCell()
+        }
+
+    }
+    
+}
+
