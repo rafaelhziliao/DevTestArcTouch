@@ -25,7 +25,6 @@
 		5838C7222115485B00B1E8FA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5838C7212115485B00B1E8FA /* Colors.swift */; };
 		5838C72421168EFC00B1E8FA /* MovieRestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5838C72321168EFC00B1E8FA /* MovieRestApi.swift */; };
 		584194F6211A368300FB52E8 /* MovieDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F0211A368300FB52E8 /* MovieDetailPresenter.swift */; };
-		584194F7211A368300FB52E8 /* MovieDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F1211A368300FB52E8 /* MovieDetailWorker.swift */; };
 		584194F8211A368300FB52E8 /* MovieDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F2211A368300FB52E8 /* MovieDetailRouter.swift */; };
 		584194F9211A368300FB52E8 /* MovieDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F3211A368300FB52E8 /* MovieDetailModels.swift */; };
 		584194FA211A368300FB52E8 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584194F4211A368300FB52E8 /* MovieDetailViewController.swift */; };
@@ -70,7 +69,6 @@
 		5838C7212115485B00B1E8FA /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5838C72321168EFC00B1E8FA /* MovieRestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRestApi.swift; sourceTree = "<group>"; };
 		584194F0211A368300FB52E8 /* MovieDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPresenter.swift; sourceTree = "<group>"; };
-		584194F1211A368300FB52E8 /* MovieDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailWorker.swift; sourceTree = "<group>"; };
 		584194F2211A368300FB52E8 /* MovieDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailRouter.swift; sourceTree = "<group>"; };
 		584194F3211A368300FB52E8 /* MovieDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModels.swift; sourceTree = "<group>"; };
 		584194F4211A368300FB52E8 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +204,7 @@
 		580D065D21113990002D0AEC /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				58B26B1D212123D90035D662 /* Common */,
 				5838C70E2114D21200B1E8FA /* Movies */,
 				5838C70F2114D23000B1E8FA /* MovieDetail */,
 			);
@@ -224,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				5838C7102114D26900B1E8FA /* MoviesPresenter.swift */,
-				5838C7112114D26900B1E8FA /* MoviesWorker.swift */,
 				5838C7122114D26900B1E8FA /* MoviesRouter.swift */,
 				5838C7132114D26900B1E8FA /* MoviesModels.swift */,
 				5838C7142114D26900B1E8FA /* MoviesViewController.swift */,
@@ -239,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				584194F0211A368300FB52E8 /* MovieDetailPresenter.swift */,
-				584194F1211A368300FB52E8 /* MovieDetailWorker.swift */,
 				584194F2211A368300FB52E8 /* MovieDetailRouter.swift */,
 				584194F3211A368300FB52E8 /* MovieDetailModels.swift */,
 				584194F4211A368300FB52E8 /* MovieDetailViewController.swift */,
@@ -255,6 +252,14 @@
 				5838C7212115485B00B1E8FA /* Colors.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		58B26B1D212123D90035D662 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5838C7112114D26900B1E8FA /* MoviesWorker.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		58CD660221210ED50032ACA4 /* Images */ = {
@@ -465,7 +470,6 @@
 				5838C71B2114D26900B1E8FA /* MoviesInteractor.swift in Sources */,
 				582A7F582111D60F007FC03D /* MovieResults.swift in Sources */,
 				5838C7162114D26900B1E8FA /* MoviesPresenter.swift in Sources */,
-				584194F7211A368300FB52E8 /* MovieDetailWorker.swift in Sources */,
 				58085527211F4822007FD827 /* MovieDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
