@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58085527211F4822007FD827 /* MovieDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58085526211F4822007FD827 /* MovieDetailCell.swift */; };
 		580D063821113700002D0AEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D063721113700002D0AEC /* AppDelegate.swift */; };
 		580D063D21113700002D0AEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580D063B21113700002D0AEC /* Main.storyboard */; };
 		580D063F21113702002D0AEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 580D063E21113702002D0AEC /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58085526211F4822007FD827 /* MovieDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailCell.swift; sourceTree = "<group>"; };
 		580D063421113700002D0AEC /* DevTestArcTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTestArcTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		580D063721113700002D0AEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		580D063C21113700002D0AEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				584194F3211A368300FB52E8 /* MovieDetailModels.swift */,
 				584194F4211A368300FB52E8 /* MovieDetailViewController.swift */,
 				584194F5211A368300FB52E8 /* MovieDetailInteractor.swift */,
+				58085526211F4822007FD827 /* MovieDetailCell.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				582A7F582111D60F007FC03D /* MovieResults.swift in Sources */,
 				5838C7162114D26900B1E8FA /* MoviesPresenter.swift in Sources */,
 				584194F7211A368300FB52E8 /* MovieDetailWorker.swift in Sources */,
+				58085527211F4822007FD827 /* MovieDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
