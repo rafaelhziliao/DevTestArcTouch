@@ -196,8 +196,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Adventure, Action, Thriller, asdadsad, dasdadssa, asdasdsad, adsadasda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9g-fG-DDJ">
-                                                    <rect key="frame" x="0.0" y="152" width="222" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Adventure, Action, Thriller, asdadsad, dasdadssa, asdasdsad, adsadasda" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9g-fG-DDJ">
+                                                    <rect key="frame" x="0.0" y="112" width="222" height="54"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -214,6 +214,7 @@
                                                 <constraint firstAttribute="height" constant="166" id="AJi-PA-FSu"/>
                                                 <constraint firstItem="apW-Uh-UcA" firstAttribute="leading" secondItem="Shc-ri-UH0" secondAttribute="leading" id="AW2-hr-naJ"/>
                                                 <constraint firstItem="PdX-hT-I33" firstAttribute="leading" secondItem="apW-Uh-UcA" secondAttribute="trailing" constant="16" id="Frx-E2-4dh"/>
+                                                <constraint firstItem="A9g-fG-DDJ" firstAttribute="top" secondItem="apW-Uh-UcA" secondAttribute="bottom" id="Idx-eN-x98"/>
                                                 <constraint firstAttribute="trailing" secondItem="mZE-4m-lFm" secondAttribute="trailing" constant="4" id="KM8-gM-p59"/>
                                                 <constraint firstItem="apW-Uh-UcA" firstAttribute="top" secondItem="biY-oe-u5m" secondAttribute="bottom" constant="4" id="VNp-Ho-3rD"/>
                                                 <constraint firstAttribute="bottom" secondItem="A9g-fG-DDJ" secondAttribute="bottom" id="aZi-4u-ZWj"/>
